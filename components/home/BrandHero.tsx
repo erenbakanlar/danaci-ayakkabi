@@ -420,7 +420,7 @@ export function BrandHero({ slides, collectionId }: BrandHeroProps) {
                 src={slide.image}
                 alt=""
                 draggable={false}
-                loading={i === 0 ? "eager" : "lazy"}
+                loading="eager"
                 decoding="async"
                 style={{ visibility: i === 0 ? "visible" : "hidden" }}
               />

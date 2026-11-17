@@ -101,12 +101,6 @@
 .bh-accent {
   font-style: normal;
   color: var(--bh-accent);
-  background-image: linear-gradient(
-    transparent 72%,
-    color-mix(in oklab, var(--bh-accent-soft) 28%, transparent) 72%
-  );
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
 }
 .bh-lead {
   margin: 2.2cqw 0 0;
@@ -378,15 +372,15 @@
   }
 
   /*
-   * Telefonda akıcılık: yansıma, ışık süpürmesi ve gölge filtresi her
-   * karede yeniden boyanır ve geçişi takıltır. Dar ekranda kapatılır;
-   * gölgeyi alttaki zemin gölgesi verir.
+   * Telefonda akıcılık: ışık süpürmesi ve filtreler (gölge, yansımadaki
+   * bulanıklık) her karede yeniden boyanır ve geçişi takıltır. Dar ekranda
+   * kapatılır; yansıma filtresiz kalır, gölgeyi alttaki zemin gölgesi verir.
    */
-  .bh-reflects,
   .bh-shoe.bh-sheen {
     display: none;
   }
-  .bh-shoe {
+  .bh-shoe,
+  .bh-shoe.bh-reflect {
     filter: none;
   }
   .bh-floor {
