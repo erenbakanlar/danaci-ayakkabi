@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "catalog": "node scripts/build-catalog.mjs",
-    "icons": "node scripts/build-icons.mjs"
+    "icons": "node scripts/build-icons.mjs",
+    "plesk:check": "node -v && \"$npm_node_execpath\" -v",
+    "build:plesk": "\"$npm_node_execpath\" node_modules/next/dist/bin/next build"
   },
   "dependencies": {
     "embla-carousel-react": "^8.6.0",
