@@ -1,0 +1,348 @@
+/*
+ * BrandHero stilleri. app/globals.css içinden Tailwind ile birlikte yüklenir;
+ * renkler ve ölçüler tailwind.config.ts token'larından gelir. Ölçüler cqw
+ * (bölümün kendi genişliği) ile orantılıdır.
+ *
+ * Not: GSAP dönüştürdüğü öğelerde CSS `translate` özelliğini sıfırlar; bu
+ * yüzden yazı, ayakkabı ve gölge `translate` yerine konum/kenar boşluğuyla
+ * yerleştirilir.
+ */
+
+.bh-root {
+  --bh-bg: theme(colors.background);
+  --bh-fg: theme(colors.foreground);
+  --bh-muted: theme(colors.muted);
+  --bh-line: theme(colors.border);
+  --bh-accent: theme(colors.accent.DEFAULT);
+  --bh-accent-soft: theme(colors.accent.soft);
+  --bh-khaki: theme(colors.khaki);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100svh - theme(spacing.header) - theme(spacing.announcement));
+  container-type: inline-size;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--bh-fg);
+  background: var(--bh-bg);
+}
+@media (min-width: 1024px) {
+  .bh-root {
+    min-height: calc(100svh - theme(spacing.header-lg) - theme(spacing.announcement));
+  }
+}
+.bh-root img {
+  max-width: none;
+  display: block;
+}
+
+/* Arka plan: ayakkabıya göre değişen düşük doygunluklu ton */
+.bh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      44% 58% at calc(50% + var(--mx, 0%)) calc(54% + var(--my, 0%)),
+      color-mix(in oklab, var(--t) 24%, transparent),
+      transparent 72%
+    ),
+    color-mix(in oklab, var(--t) 8%, var(--bh-bg));
+}
+.bh-bg[data-on="true"] {
+  opacity: 1;
+}
+
+.bh-body {
+  position: relative;
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 30cqw) minmax(0, 1fr) minmax(0, 21cqw);
+  column-gap: 3cqw;
+  align-items: center;
+  padding: 3cqw 5cqw 7cqw;
+}
+
+/* Sol: hikâye */
+.bh-copy {
+  position: relative;
+  z-index: 1;
+}
+.bh-eyebrow {
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  font-size: max(12px, 0.95cqw);
+  letter-spacing: theme(letterSpacing.label);
+  text-transform: uppercase;
+  color: var(--bh-muted);
+}
+.bh-year {
+  font-weight: 500;
+  color: var(--bh-fg);
+}
+.bh-title {
+  margin: 1.6cqw 0 0;
+  font-size: max(34px, 3.7cqw);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.bh-lead {
+  margin: 2.2cqw 0 0;
+  max-width: 27cqw;
+  font-size: max(15px, 1.12cqw);
+  line-height: 1.65;
+  color: var(--bh-muted);
+}
+.bh-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  height: max(48px, 3.6cqw);
+  margin-top: 2.8cqw;
+  padding: 0 max(22px, 1.9cqw);
+  background: var(--bh-accent);
+  color: #fff;
+  font-size: max(12px, 0.85cqw);
+  letter-spacing: theme(letterSpacing.label);
+  text-transform: uppercase;
+  transition: background 0.3s;
+}
+.bh-cta:hover {
+  background: var(--bh-accent-soft);
+}
+.bh-cta svg {
+  transition: transform 0.3s;
+}
+.bh-cta:hover svg {
+  transform: translateY(3px);
+}
+
+/* Orta: ayakkabı sahnesi */
+.bh-stage {
+  position: relative;
+  align-self: stretch;
+  min-height: 30cqw;
+  pointer-events: none;
+}
+.bh-word {
+  position: absolute;
+  left: -20cqw;
+  right: -20cqw;
+  top: 4%;
+  display: flex;
+  justify-content: center;
+  font-size: 9.5cqw;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: color-mix(in oklab, var(--t) 20%, transparent);
+  user-select: none;
+}
+.bh-float,
+.bh-tilt,
+.bh-reflects {
+  position: absolute;
+  inset: 0;
+}
+.bh-tilt {
+  transform-style: preserve-3d;
+}
+.bh-shoe {
+  position: absolute;
+  left: 4%;
+  top: 52%;
+  width: 92%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: contain;
+  /* Kendi yüksekliğinin yarısı kadar yukarı (yükseklik = genişliğin %75'i) */
+  margin-top: -34.5%;
+  filter: drop-shadow(0 1.6cqw 1.4cqw rgb(from var(--bh-fg) r g b / 0.14));
+}
+.bh-shoe.bh-reflect {
+  transform: scaleY(-1);
+  transform-origin: 50% 96%;
+  filter: blur(0.6px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 58%, #000 96%);
+  mask-image: linear-gradient(to bottom, transparent 58%, #000 96%);
+}
+.bh-shoe.bh-sheen {
+  display: block;
+  filter: none;
+  background: linear-gradient(
+      100deg,
+      transparent 40%,
+      rgb(from var(--bh-bg) r g b / 0.55) 50%,
+      transparent 60%
+    )
+    130% 0/300% 100% no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+.bh-floor {
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  top: 52%;
+  height: 4cqw;
+  margin-top: 13cqw;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(from var(--bh-fg) r g b / 0.2), transparent);
+  filter: blur(4px);
+}
+
+/* Sağ: güven maddeleri */
+.bh-values {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: max(18px, 1.8cqw);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.bh-value {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: max(12px, 1cqw);
+  padding-top: max(16px, 1.4cqw);
+  border-top: 1px solid var(--bh-line);
+}
+.bh-num {
+  font-size: max(11px, 0.8cqw);
+  letter-spacing: theme(letterSpacing.label);
+  color: var(--bh-muted);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.2em;
+}
+.bh-value-title {
+  margin: 0;
+  font-size: max(15px, 1.1cqw);
+  font-weight: 500;
+}
+.bh-value-text {
+  margin: 0.45em 0 0;
+  font-size: max(13px, 0.92cqw);
+  line-height: 1.55;
+  color: var(--bh-muted);
+}
+
+/* Altta: kaydırma işareti */
+.bh-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: max(16px, 1.6cqw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+  margin-left: -60px;
+  font-size: 11px;
+  letter-spacing: theme(letterSpacing.label);
+  text-transform: uppercase;
+  color: var(--bh-muted);
+}
+.bh-scroll:hover {
+  color: var(--bh-fg);
+}
+.bh-scroll-line {
+  position: relative;
+  width: 1px;
+  height: 44px;
+  overflow: hidden;
+  background: var(--bh-line);
+}
+.bh-scroll-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 45%;
+  background: var(--bh-fg);
+  animation: bh-cue 2s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+@keyframes bh-cue {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(230%);
+  }
+}
+
+/* Dar ekran: başlık, ayakkabı, metin ve buton, maddeler */
+@container (max-width: 900px) {
+  .bh-body {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 32px theme(spacing.gutter) 48px;
+    row-gap: 0;
+    align-content: start;
+  }
+  .bh-copy {
+    display: contents;
+  }
+  .bh-eyebrow {
+    order: -3;
+  }
+  .bh-title {
+    order: -2;
+    margin-top: 10px;
+    font-size: clamp(32px, 9cqw, 48px);
+  }
+  .bh-stage {
+    order: -1;
+    min-height: 68cqw;
+    margin-top: 8px;
+  }
+  .bh-lead {
+    order: 1;
+    max-width: none;
+    margin-top: 4px;
+  }
+  .bh-cta {
+    order: 2;
+    justify-content: center;
+    width: 100%;
+    margin-top: 24px;
+  }
+  .bh-values {
+    order: 3;
+    margin-top: 40px;
+    gap: 20px;
+  }
+  .bh-word {
+    font-size: 19cqw;
+    top: 6%;
+  }
+  .bh-floor {
+    height: 8cqw;
+    margin-top: 30cqw;
+  }
+  .bh-scroll {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bh-root *,
+  .bh-root *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

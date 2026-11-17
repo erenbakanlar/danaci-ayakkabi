@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#FAF8F4"/>
+  <g transform="translate(7 7) scale(0.78125)">
+  <!--
+    Danacı amblemi: kalın "D", sol alt köşesinde ince boşlukla ayrılmış kare
+    ve içinde küçük harf "a". Şeffaf zeminli ana çizim; favicon'lar
+    scripts/build-icons.mjs ile buradan üretilir.
+  -->
+  <defs>
+    <mask id="danaci-d">
+      <rect width="64" height="64" fill="#fff"/>
+      <!-- D'nin iç boşluğu -->
+      <path d="M20 16H30C40.5 16 47 22.5 47 32S40.5 47 30 47H20Z" fill="#000"/>
+      <!-- Sol alt köşe: kare ile D arasındaki boşluklar -->
+      <rect x="6" y="44" width="16" height="16" fill="#000"/>
+    </mask>
+  </defs>
+  <path d="M8 6H31C47 6 58 16.5 58 32S47 58 31 58H8Z" fill="#141414" mask="url(#danaci-d)"/>
+  <rect x="8" y="46" width="12" height="12" fill="#141414"/>
+  <!-- "a" -->
+  <g fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round">
+    <path d="M11.3 50.7C11.7 49.4 12.7 48.8 13.9 48.8C15.3 48.8 16 49.6 16 51V56.3"/>
+    <ellipse cx="13.6" cy="54.2" rx="2.3" ry="1.85"/>
+  </g>
+</g>
+</svg>
