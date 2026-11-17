@@ -67,7 +67,7 @@ export function StoreStory({ only }: StoreStoryProps) {
 
   return (
     <MotionConfig reducedMotion="user">
-      <section aria-label="Mağazamız" className="border-t border-border">
+      <section aria-label="Mağazamız" className="overflow-x-clip border-t border-border">
         <Container className="space-y-section py-section lg:space-y-section-lg lg:py-section-lg">
           {rows.map((row, index) => (
             <StoreRow key={row.id} row={row} imageFirst={index % 2 === 1} />

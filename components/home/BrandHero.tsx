@@ -200,26 +200,43 @@ export function BrandHero({ slides, collectionId }: BrandHeroProps) {
     if (!root || count < 2 || prefersReduced()) return;
 
     let visible = true;
+    let busy = false;
+    let cancelled = false;
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
     });
     io.observe(root);
 
+    /** Görseli önceden çözümle; animasyon sırasında çözümleme takılma yapar. */
+    const ready = (index: number) => {
+      const img = shoeRefs.current[index];
+      return img ? img.decode().catch(() => undefined) : Promise.resolve();
+    };
+    ready(1 % count);
+
     const timer = window.setInterval(() => {
-      if (!visible || paused.current || document.hidden) return;
+      if (!visible || paused.current || document.hidden || busy) return;
       const prev = shown.current;
       const next = (prev + 1) % count;
-      shown.current = next;
-      swap(prev, next, {
-        shoes: shoeRefs.current,
-        words: wordRefs.current,
-        reflections: reflectRefs.current,
-        sheen: sheenRef.current,
+      busy = true;
+      ready(next).then(() => {
+        busy = false;
+        if (cancelled) return;
+        shown.current = next;
+        swap(prev, next, {
+          shoes: shoeRefs.current,
+          words: wordRefs.current,
+          reflections: reflectRefs.current,
+          sheen: sheenRef.current,
+        });
+        setActive(next);
+        // Bir sonrakini şimdiden hazırla.
+        ready((next + 1) % count);
       });
-      setActive(next);
     }, INTERVAL);
 
     return () => {
+      cancelled = true;
       window.clearInterval(timer);
       io.disconnect();
     };
@@ -345,7 +362,7 @@ export function BrandHero({ slides, collectionId }: BrandHeroProps) {
             <span>&apos;ten beri · Antalya</span>
           </p>
           <h1 className="bh-title" id="hero-heading">
-            Altmış yılı aşkın özen, her adımda.
+            <em className="bh-accent">Altmış yılı aşkın</em> özen, her adımda.
           </h1>
           <p className="bh-lead">
             Danacı Ayakkabı 1965&apos;ten bu yana kaliteli deri ayakkabıyı
@@ -422,8 +439,9 @@ export function BrandHero({ slides, collectionId }: BrandHeroProps) {
                   src={slide.image}
                   alt=""
                   draggable={false}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  fetchPriority={i === 0 ? "high" : undefined}
+                  // Hepsi baştan yüklensin; geçiş anında yükleme takılma yapar.
+                  loading="eager"
+                  fetchPriority={i === 0 ? "high" : "low"}
                   decoding="async"
                   style={{ visibility: i === 0 ? "visible" : "hidden" }}
                 />

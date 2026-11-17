@@ -152,15 +152,15 @@ export function CampaignPopup() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={close}
-                    className="flex h-12 flex-1 items-center justify-center gap-2 whitespace-nowrap bg-accent px-4 text-xs uppercase tracking-label text-white hover:bg-accent-soft"
+                    className="flex h-14 w-full shrink-0 items-center justify-center gap-2.5 whitespace-nowrap bg-accent px-4 text-sm font-semibold uppercase tracking-label text-white shadow-lg shadow-black/30 hover:bg-accent-soft sm:h-12 sm:w-auto sm:flex-1 sm:text-xs"
                   >
-                    <WhatsAppIcon width={18} height={18} />
+                    <WhatsAppIcon width={20} height={20} />
                     WhatsApp&apos;tan Bilgi Al
                   </a>
                   <button
                     type="button"
                     onClick={close}
-                    className="flex h-12 flex-1 cursor-pointer items-center justify-center border border-white/70 px-4 text-xs uppercase tracking-label text-white hover:bg-white/10"
+                    className="flex h-14 w-full shrink-0 cursor-pointer items-center justify-center border-2 border-white bg-white/10 px-4 text-sm font-semibold uppercase tracking-label text-white backdrop-blur-sm hover:bg-white/20 sm:h-12 sm:w-auto sm:flex-1 sm:text-xs"
                   >
                     Modellere Göz At
                   </button>

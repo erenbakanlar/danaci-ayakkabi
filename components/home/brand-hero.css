@@ -54,6 +54,9 @@
     ),
     color-mix(in oklab, var(--t) 8%, var(--bh-bg));
 }
+.bh-bg {
+  will-change: opacity;
+}
 .bh-bg[data-on="true"] {
   opacity: 1;
 }
@@ -93,6 +96,17 @@
   font-weight: 500;
   letter-spacing: -0.025em;
   text-wrap: balance;
+}
+/* Başlıkta vurgulanan ifade */
+.bh-accent {
+  font-style: normal;
+  color: var(--bh-accent);
+  background-image: linear-gradient(
+    transparent 72%,
+    color-mix(in oklab, var(--bh-accent-soft) 28%, transparent) 72%
+  );
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 .bh-lead {
   margin: 2.2cqw 0 0;
@@ -147,6 +161,7 @@
   white-space: nowrap;
   color: color-mix(in oklab, var(--t) 20%, transparent);
   user-select: none;
+  will-change: transform, opacity;
 }
 .bh-float,
 .bh-tilt,
@@ -168,6 +183,9 @@
   /* Kendi yüksekliğinin yarısı kadar yukarı (yükseklik = genişliğin %75'i) */
   margin-top: -34.5%;
   filter: drop-shadow(0 1.6cqw 1.4cqw rgb(from var(--bh-fg) r g b / 0.14));
+  /* Geçişlerde ayrı katmanda kalsın; telefonda takılmayı azaltır */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 .bh-shoe.bh-reflect {
   transform: scaleY(-1);
@@ -336,6 +354,43 @@
   }
   .bh-scroll {
     display: none;
+  }
+
+  /* Telefonda daha canlı: tonu ve metin kontrastını artır */
+  .bh-bg {
+    background:
+      radial-gradient(
+        90% 34% at 50% 34%,
+        color-mix(in oklab, var(--t) 36%, transparent),
+        transparent 74%
+      ),
+      color-mix(in oklab, var(--t) 13%, var(--bh-bg));
+  }
+  .bh-eyebrow {
+    color: color-mix(in oklab, var(--bh-fg) 72%, var(--bh-bg));
+  }
+  .bh-lead,
+  .bh-value-text {
+    color: color-mix(in oklab, var(--bh-fg) 80%, var(--bh-bg));
+  }
+  .bh-word {
+    color: color-mix(in oklab, var(--t) 30%, transparent);
+  }
+
+  /*
+   * Telefonda akıcılık: yansıma, ışık süpürmesi ve gölge filtresi her
+   * karede yeniden boyanır ve geçişi takıltır. Dar ekranda kapatılır;
+   * gölgeyi alttaki zemin gölgesi verir.
+   */
+  .bh-reflects,
+  .bh-shoe.bh-sheen {
+    display: none;
+  }
+  .bh-shoe {
+    filter: none;
+  }
+  .bh-floor {
+    background: radial-gradient(closest-side, rgb(from var(--bh-fg) r g b / 0.3), transparent);
   }
 }
 
