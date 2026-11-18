@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Price } from "@/components/product/Price";
+import { skipOptimization } from "@/lib/images";
 import type { Product } from "@/types/product";
 
 interface ProductCardProps {
@@ -17,6 +18,7 @@ export function ProductCard({ product, note, priority = false }: ProductCardProp
       <div className="relative aspect-[4/5] overflow-hidden bg-surface">
         <Image
           src={product.cardImage}
+          unoptimized={skipOptimization(product.cardImage)}
           alt={`${product.name} — ${product.colors.join(", ")}`}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"

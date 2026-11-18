@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { skipOptimization } from "@/lib/images";
 
 interface ProductGalleryProps {
   images: string[];
@@ -21,6 +22,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
         <Image
           key={current}
           src={current}
+          unoptimized={skipOptimization(current)}
           alt={alt}
           fill
           loading="eager"
@@ -41,7 +43,14 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
                 onClick={() => setActive(index)}
                 className="relative block h-24 w-20 cursor-pointer overflow-hidden bg-surface outline-offset-2 aria-pressed:outline aria-pressed:outline-1 aria-pressed:outline-foreground"
               >
-                <Image src={src} alt="" fill sizes="80px" className="object-cover" />
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="80px"
+                  unoptimized={skipOptimization(src)}
+                  className="object-cover"
+                />
               </button>
             </li>
           ))}

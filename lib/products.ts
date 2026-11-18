@@ -1,38 +1,48 @@
-import { productData } from "@/lib/product-data";
+import { cacheLife, cacheTag } from "next/cache";
+import { findActiveProductBySlug, listActiveProducts } from "@/lib/server/catalog";
 import { siteConfig } from "@/lib/site-config";
 import type { Product, ProductCategory } from "@/types/product";
 
 /**
- * ÜRÜN VERİ KATMANI
+ * ÜRÜN VERİ KATMANI (site tarafı)
  *
  * Sayfalar ve bileşenler ürün verisine SADECE bu dosyanın export ettiği
- * fonksiyonlarla erişir. E-ticarete geçişte yalnızca bu dosyanın içi bir API
- * istemcisiyle değiştirilecek; fonksiyon imzaları aynı kalacak. Bu yüzden
- * fonksiyonlar şimdiden async.
+ * fonksiyonlarla erişir. Veri, yönetim panelinden düzenlenen SQLite
+ * veritabanından gelir (lib/server/catalog.ts).
  *
- * Veri şu an lib/product-data.ts içinden gelir; o dosya public/products
- * altındaki fotoğraflardan `npm run catalog` ile üretilir.
+ * Okumalar önbelleğe alınır ve "products" etiketiyle işaretlenir. Panelde
+ * bir ürün kaydedildiğinde updateTag("products") ile önbellek hemen
+ * yenilenir; birden fazla sunucu süreci çalışıyorsa diğerleri en geç bir
+ * dakika içinde güncellenir.
  */
-const products: Product[] = productData;
+export const PRODUCTS_TAG = "products";
 
-export async function getProducts(): Promise<Product[]> {
-  return products;
+async function activeProducts(): Promise<Product[]> {
+  "use cache";
+  cacheTag(PRODUCTS_TAG);
+  cacheLife({ stale: 60, revalidate: 60, expire: 3600 });
+  return listActiveProducts();
 }
 
-/** Öne çıkan ürünler, katalogdaki sırasıyla. */
+export async function getProducts(): Promise<Product[]> {
+  return activeProducts();
+}
+
+/** Öne çıkan ürünler, panelde verilen sırayla. */
 export async function getFeaturedProducts(): Promise<Product[]> {
-  return products.filter((product) => product.isFeatured);
+  return (await activeProducts()).filter((product) => product.isFeatured);
 }
 
 /** Ana sayfa hero'sunda gösterilecek ürün: isFeatured olan ilk ürün. */
 export async function getHeroProduct(): Promise<Product | undefined> {
-  return products.find((product) => product.isFeatured);
+  return (await activeProducts()).find((product) => product.isFeatured);
 }
 
-export async function getProductBySlug(
-  slug: string,
-): Promise<Product | undefined> {
-  return products.find((product) => product.slug === slug);
+export async function getProductBySlug(slug: string): Promise<Product | undefined> {
+  "use cache";
+  cacheTag(PRODUCTS_TAG);
+  cacheLife({ stale: 60, revalidate: 60, expire: 3600 });
+  return findActiveProductBySlug(slug);
 }
 
 /** Ürünün "Büyük Numara" eşiğinde ve üstünde, stokta olan numaraları. */
@@ -47,11 +57,11 @@ export function getLargeSizes(product: Product): string[] {
 
 /** "Büyük Numara" bölümü: eşik ve üstü numarası stokta olan modeller. */
 export async function getLargeSizeProducts(): Promise<Product[]> {
-  return products.filter((product) => getLargeSizes(product).length > 0);
+  return (await activeProducts()).filter((product) => getLargeSizes(product).length > 0);
 }
 
 export async function getProductsByCategory(
   category: ProductCategory,
 ): Promise<Product[]> {
-  return products.filter((product) => product.category === category);
+  return (await activeProducts()).filter((product) => product.category === category);
 }

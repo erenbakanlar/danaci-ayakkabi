@@ -17,7 +17,7 @@ export const siteConfig = {
    * - showPrices: fiyatlar (components/product/Price) ve WhatsApp mesajındaki fiyat satırı
    * - commerceEnabled: components/product/PurchaseAction içinde sepet akışı
    */
-  showPrices: false as boolean,
+  showPrices: true as boolean,
   commerceEnabled: false as boolean,
 
   whatsapp: {

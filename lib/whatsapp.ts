@@ -34,7 +34,7 @@ export function buildProductMessage({
   ];
   if (color) lines.push(`Renk: ${color}`);
   lines.push(`Numara: ${size ?? "henüz seçilmedi"}`);
-  if (siteConfig.showPrices) {
+  if (siteConfig.showPrices && product.price > 0) {
     lines.push(`Fiyat: ${formatPrice(product.price, product.currency)}`);
   }
   lines.push(

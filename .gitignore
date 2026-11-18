@@ -44,3 +44,7 @@ next-env.d.ts
 /kaynak-fotograflar/
 # şeffaf kesimlerin büyük PNG kaynakları (site WebP kopyalarını kullanır)
 /public/products/*-seffaf.png
+
+# yönetim paneli verisi: SQLite veritabanı ve yüklenen fotoğraflar (sunucuda kalır)
+/storage/
+!.env.example
