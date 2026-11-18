@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CloseIcon, MenuIcon, SearchIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { Logo } from "@/components/ui/Logo";
 import { openCampaign } from "@/lib/campaign";
 import { siteConfig } from "@/lib/site-config";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
@@ -91,10 +92,11 @@ export function Header() {
         {/* Orta: logo */}
         <Link
           href="/"
-          className="pl-[0.3em] text-xl font-medium tracking-logo lg:text-2xl"
+          aria-label="Danacı Ayakkabı — ana sayfa"
+          className="block text-foreground"
           onClick={() => setMenuOpen(false)}
         >
-          {siteConfig.name}
+          <Logo title="Danacı Ayakkabı" className="h-7 w-auto lg:h-8" />
         </Link>
 
         {/* Sağ: bilgi sayfaları + WhatsApp */}
