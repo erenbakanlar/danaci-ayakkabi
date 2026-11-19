@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CloseIcon, MenuIcon, SearchIcon, WhatsAppIcon } from "@/components/ui/icons";
-import { Logo } from "@/components/ui/Logo";
 import { openCampaign } from "@/lib/campaign";
 import { siteConfig } from "@/lib/site-config";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
@@ -93,10 +93,20 @@ export function Header() {
         <Link
           href="/"
           aria-label="Danacı Ayakkabı — ana sayfa"
-          className="block text-foreground"
+          className="block"
           onClick={() => setMenuOpen(false)}
         >
-          <Logo title="Danacı Ayakkabı" className="h-7 w-auto lg:h-8" />
+          {/* Firma logosu (public/magaza/logo.jpg). Beyaz zemini, mix-blend-multiply
+              ile header rengine karışır. */}
+          <Image
+            src="/magaza/logo.jpg"
+            alt="Danacı Ayakkabı"
+            width={142}
+            height={55}
+            loading="eager"
+            unoptimized
+            className="h-11 w-auto mix-blend-multiply lg:h-[52px]"
+          />
         </Link>
 
         {/* Sağ: bilgi sayfaları + WhatsApp */}
