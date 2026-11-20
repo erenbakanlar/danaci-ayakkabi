@@ -35,7 +35,12 @@ export function buildProductMessage({
   if (color) lines.push(`Renk: ${color}`);
   lines.push(`Numara: ${size ?? "henüz seçilmedi"}`);
   if (siteConfig.showPrices && product.price > 0) {
-    lines.push(`Fiyat: ${formatPrice(product.price, product.currency)}`);
+    const onSale = product.compareAtPrice && product.compareAtPrice > product.price;
+    lines.push(
+      onSale
+        ? `Fiyat: ${formatPrice(product.price, product.currency)} (indirimli, normal fiyatı ${formatPrice(product.compareAtPrice!, product.currency)})`
+        : `Fiyat: ${formatPrice(product.price, product.currency)}`,
+    );
   }
   lines.push(
     "",

@@ -25,6 +25,10 @@ Panelde kaydedilen değişiklik sitede birkaç saniye içinde görünür.
 - **Giriş:** tek şifre, `ADMIN_PASSWORD` ortam değişkeninden. Şifre değişince açık oturumlar kapanır.
 - **Toplu fiyat:** ürün listesinde fiyatlar doğrudan yazılıp “Fiyatları kaydet” ile tek seferde kaydedilir.
   Türkçe yazım kabul edilir: `2.450`, `2.199,90`.
+- **İndirim:** her üründe “Normal fiyat” ve isteğe bağlı “İndirimli fiyat” var. İndirimli fiyat
+  girilirse sitede normal fiyat üstü çizili, yanında indirimli fiyat ve görselin sol üst köşesinde
+  kırmızı çerçeveli indirim yüzdesi görünür. İndirimli fiyat, normal fiyat olmadan kaydedilmez ve
+  normal fiyattan düşük olmalıdır.
 - **Fotoğraflar:** telefondan yüklenebilir; otomatik 4:5 kırpılır ve WebP'ye çevrilir.
   İlk fotoğraf kapak olur. İsteğe bağlı şeffaf PNG, ana sayfadaki dönen ayakkabılarda kullanılır.
 - **Numaralar:** 47 ve üstü seçilen modeller otomatik olarak “Büyük Numara” bölümüne girer.

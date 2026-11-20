@@ -24,6 +24,7 @@ async function AdminHome({ searchParams }: Pick<PageProps<"/yonetim">, "searchPa
     category: product.category,
     subcategory: product.subcategory,
     price: product.price,
+    compareAtPrice: product.compareAtPrice ?? null,
     cardImage: product.cardImage,
     hasPhoto: product.photos.length > 0,
     isActive: product.isActive,

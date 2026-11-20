@@ -12,6 +12,7 @@ export interface ProductTableRow {
   category: "kadin" | "erkek";
   subcategory: string;
   price: number;
+  compareAtPrice: number | null;
   cardImage: string;
   hasPhoto: boolean;
   isActive: boolean;
@@ -23,13 +24,21 @@ const FILTERS = [
   { id: "kadin", label: "Kadın" },
   { id: "erkek", label: "Erkek" },
   { id: "noprice", label: "Fiyatsız" },
+  { id: "sale", label: "İndirimli" },
   { id: "hidden", label: "Yayında değil" },
 ] as const;
 type FilterId = (typeof FILTERS)[number]["id"];
 
 /** 2450.5 → "2450,5"; 0 → "" */
-function priceText(price: number): string {
-  return price > 0 ? String(price).replace(".", ",") : "";
+function priceText(price: number | null | undefined): string {
+  return price && price > 0 ? String(price).replace(".", ",") : "";
+}
+
+/** Satırın kayıtlı halinin form alanlarındaki karşılığı */
+function initialFields(row: ProductTableRow): { normal: string; sale: string } {
+  return row.compareAtPrice
+    ? { normal: priceText(row.compareAtPrice), sale: priceText(row.price) }
+    : { normal: priceText(row.price), sale: "" };
 }
 
 function matches(row: ProductTableRow, filter: FilterId, query: string): boolean {
@@ -37,6 +46,7 @@ function matches(row: ProductTableRow, filter: FilterId, query: string): boolean
     if (row.category !== filter) return false;
   }
   if (filter === "noprice" && row.price > 0) return false;
+  if (filter === "sale" && !row.compareAtPrice) return false;
   if (filter === "hidden" && row.isActive) return false;
   if (!query) return true;
   const haystack = `${row.name} ${row.colors.join(" ")} ${row.subcategory}`.toLocaleLowerCase("tr");
@@ -55,15 +65,19 @@ export function ProductTable({ rows }: { rows: ProductTableRow[] }) {
   const [, startTransition] = useTransition();
   const [filter, setFilter] = useState<FilterId>("all");
   const [query, setQuery] = useState("");
+  // "normal:<id>" / "sale:<id>" → yazılan değer
   const [edited, setEdited] = useState<Record<string, string>>({});
 
   const visible = useMemo(
     () => new Set(rows.filter((row) => matches(row, filter, query.trim())).map((row) => row.id)),
     [rows, filter, query],
   );
-  const changed = Object.entries(edited).filter(
-    ([id, value]) => value !== priceText(rows.find((row) => row.id === id)?.price ?? 0),
-  ).length;
+  const changed = rows.filter((row) => {
+    const initial = initialFields(row);
+    const normal = edited[`normal:${row.id}`] ?? initial.normal;
+    const sale = edited[`sale:${row.id}`] ?? initial.sale;
+    return normal !== initial.normal || sale !== initial.sale;
+  }).length;
 
   return (
     <form
@@ -106,7 +120,7 @@ export function ProductTable({ rows }: { rows: ProductTableRow[] }) {
           <li
             key={row.id}
             hidden={!visible.has(row.id)}
-            className="grid grid-cols-[56px_1fr] items-center gap-x-4 gap-y-3 p-3 sm:grid-cols-[56px_1fr_150px_auto]"
+            className="grid grid-cols-[56px_1fr] items-center gap-x-4 gap-y-3 p-3 sm:grid-cols-[56px_1fr_260px_auto]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -134,21 +148,32 @@ export function ProductTable({ rows }: { rows: ProductTableRow[] }) {
               </p>
             </div>
 
-            <label className="col-start-2 flex items-center gap-2 sm:col-start-auto">
-              <span className="sr-only">{row.name} fiyatı</span>
-              <input type="hidden" name={`original:${row.id}`} value={priceText(row.price)} />
-              <input
-                name={`price:${row.id}`}
-                inputMode="decimal"
-                placeholder="Fiyat"
-                defaultValue={priceText(row.price)}
-                onChange={(event) =>
-                  setEdited((current) => ({ ...current, [row.id]: event.target.value }))
-                }
-                className="h-10 w-full border border-border bg-background px-3 text-right tabular-nums outline-none focus:border-foreground"
-              />
-              <span className="text-sm text-muted">₺</span>
-            </label>
+            <div className="col-start-2 grid grid-cols-2 gap-2 sm:col-start-auto">
+              <input type="hidden" name={`name:${row.id}`} value={row.name} />
+              <input type="hidden" name={`origNormal:${row.id}`} value={initialFields(row).normal} />
+              <input type="hidden" name={`origSale:${row.id}`} value={initialFields(row).sale} />
+              {(["normal", "sale"] as const).map((kind) => (
+                <label key={kind} className="block">
+                  <span className="mb-1 block text-[11px] uppercase tracking-wide text-muted">
+                    {kind === "normal" ? "Normal ₺" : "İndirimli ₺"}
+                  </span>
+                  <input
+                    name={`${kind}:${row.id}`}
+                    inputMode="decimal"
+                    aria-label={`${row.name} ${kind === "normal" ? "normal" : "indirimli"} fiyatı`}
+                    placeholder={kind === "normal" ? "Fiyat" : "—"}
+                    defaultValue={initialFields(row)[kind]}
+                    onChange={(event) =>
+                      setEdited((current) => ({
+                        ...current,
+                        [`${kind}:${row.id}`]: event.target.value,
+                      }))
+                    }
+                    className="h-10 w-full border border-border bg-background px-3 text-right tabular-nums outline-none focus:border-foreground"
+                  />
+                </label>
+              ))}
+            </div>
 
             <div className="col-start-2 flex gap-2 sm:col-start-auto">
               <Link
@@ -176,7 +201,7 @@ export function ProductTable({ rows }: { rows: ProductTableRow[] }) {
           {state.error ? (
             <span className="font-medium text-red-700">{state.error}</span>
           ) : (
-            <>{changed} fiyat değişti</>
+            <>{changed} üründe fiyat değişti</>
           )}
         </p>
         <button

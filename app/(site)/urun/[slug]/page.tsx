@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { Price } from "@/components/product/Price";
+import { DiscountBadge, Price } from "@/components/product/Price";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { PurchaseAction } from "@/components/product/PurchaseAction";
 import { Container } from "@/components/ui/Container";
@@ -55,10 +55,13 @@ async function ProductDetail({ slug }: { slug: string }) {
 
   return (
     <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-      <ProductGallery
-        images={product.images}
-        alt={`${product.name} — ${product.colors.join(", ")}`}
-      />
+      <div className="relative">
+        <DiscountBadge product={product} size="lg" />
+        <ProductGallery
+          images={product.images}
+          alt={`${product.name} — ${product.colors.join(", ")}`}
+        />
+      </div>
 
       <div className="lg:sticky lg:top-32 lg:self-start">
         <p className="text-xs uppercase tracking-label text-muted">

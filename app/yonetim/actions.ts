@@ -70,6 +70,35 @@ function parsePriceSync(raw: FormDataEntryValue | null): number | null {
   return Math.round(value * 100) / 100;
 }
 
+/**
+ * Normal ve indirimli fiyat alanlarını veritabanı alanlarına çevirir:
+ * price = müşterinin ödediği, compareAtPrice = üstü çizili normal fiyat.
+ * İndirimli fiyat tek başına girilemez; normal fiyattan düşük olmalıdır.
+ */
+function resolvePrices(
+  normalRaw: FormDataEntryValue | null,
+  saleRaw: FormDataEntryValue | null,
+  label = "",
+): { price: number; compareAtPrice: number | null } | { error: string } {
+  const normal = parsePriceSync(normalRaw);
+  const sale = parsePriceSync(saleRaw);
+  const prefix = label ? `${label}: ` : "";
+  if (Number.isNaN(normal)) {
+    return { error: `${prefix}Normal fiyat geçerli bir sayı olmalı (ör. 2.450 veya 2450).` };
+  }
+  if (Number.isNaN(sale)) return { error: `${prefix}İndirimli fiyat geçerli bir sayı olmalı.` };
+  if (sale !== null && (normal === null || normal <= 0)) {
+    return { error: `${prefix}İndirimli fiyat girmek için önce normal fiyatı girin.` };
+  }
+  if (sale !== null && sale <= 0) return { error: `${prefix}İndirimli fiyat 0'dan büyük olmalı.` };
+  if (sale !== null && normal !== null && sale >= normal) {
+    return { error: `${prefix}İndirimli fiyat, normal fiyattan düşük olmalı.` };
+  }
+  return sale !== null
+    ? { price: sale, compareAtPrice: normal }
+    : { price: normal ?? 0, compareAtPrice: null };
+}
+
 function list(raw: FormDataEntryValue | null): string[] {
   return String(raw ?? "")
     .split(",")
@@ -98,19 +127,14 @@ export async function saveProduct(_state: FormState, formData: FormData): Promis
   const name = String(formData.get("name") ?? "").trim();
   const category = String(formData.get("category") ?? "");
   const subcategory = String(formData.get("subcategory") ?? "").trim();
-  const price = parsePriceSync(formData.get("price"));
-  const compareAtPrice = parsePriceSync(formData.get("compareAtPrice"));
+  const prices = resolvePrices(formData.get("normalPrice"), formData.get("salePrice"));
   const photos = readPhotos(formData.get("photos"));
   const isActive = formData.get("isActive") === "on";
 
   if (!name) return { error: "Model adı boş olamaz." };
   if (category !== "kadin" && category !== "erkek") return { error: "Kategori seçin." };
   if (!subcategory) return { error: "Tür (ör. Loafer, Bot) boş olamaz." };
-  if (Number.isNaN(price)) return { error: "Fiyat geçerli bir sayı olmalı (ör. 2.450 veya 2450)." };
-  if (Number.isNaN(compareAtPrice)) return { error: "İndirimsiz fiyat geçerli bir sayı olmalı." };
-  if (compareAtPrice !== null && price !== null && compareAtPrice <= price) {
-    return { error: "İndirimsiz fiyat, satış fiyatından yüksek olmalı (ya da boş bırakın)." };
-  }
+  if ("error" in prices) return prices;
   if (isActive && photos.length === 0) {
     return { error: "Yayına almak için en az bir fotoğraf ekleyin." };
   }
@@ -119,8 +143,8 @@ export async function saveProduct(_state: FormState, formData: FormData): Promis
     name,
     category,
     subcategory,
-    price: price ?? 0,
-    compareAtPrice,
+    price: prices.price,
+    compareAtPrice: prices.compareAtPrice,
     description: String(formData.get("description") ?? "").trim(),
     colors: list(formData.get("colors")),
     sizes: formData
@@ -167,24 +191,36 @@ export async function toggleActive(formData: FormData) {
 export async function savePrices(_state: FormState, formData: FormData): Promise<FormState> {
   await requireAdmin();
 
-  const updates: { id: string; price: number }[] = [];
+  const updates: { id: string; price: number; compareAtPrice: number | null }[] = [];
   for (const [key, raw] of formData.entries()) {
-    if (!key.startsWith("price:")) continue;
-    const id = key.slice("price:".length);
-    const price = parsePriceSync(raw);
-    const original = parsePriceSync(formData.get(`original:${id}`)) ?? 0;
-    if (Number.isNaN(price)) return { error: `Geçersiz fiyat: "${String(raw)}"` };
-    if ((price ?? 0) !== original) updates.push({ id, price: price ?? 0 });
+    if (!key.startsWith("normal:")) continue;
+    const id = key.slice("normal:".length);
+    const name = String(formData.get(`name:${id}`) ?? "");
+    const next = resolvePrices(raw, formData.get(`sale:${id}`), name);
+    if ("error" in next) return next;
+    const original = resolvePrices(
+      formData.get(`origNormal:${id}`),
+      formData.get(`origSale:${id}`),
+    );
+    if (
+      "error" in original ||
+      original.price !== next.price ||
+      original.compareAtPrice !== next.compareAtPrice
+    ) {
+      updates.push({ id, ...next });
+    }
   }
 
   if (updates.length > 0) {
     const statement = db().prepare(
-      "UPDATE products SET price = ?, updated_at = ? WHERE id = ?",
+      "UPDATE products SET price = ?, compare_at_price = ?, updated_at = ? WHERE id = ?",
     );
     const now = new Date().toISOString();
     db().exec("BEGIN");
     try {
-      for (const { id, price } of updates) statement.run(price, now, id);
+      for (const { id, price, compareAtPrice } of updates) {
+        statement.run(price, compareAtPrice, now, id);
+      }
       db().exec("COMMIT");
     } catch (error) {
       db().exec("ROLLBACK");
@@ -195,7 +231,7 @@ export async function savePrices(_state: FormState, formData: FormData): Promise
 
   redirect(
     `/yonetim?mesaj=${encodeURIComponent(
-      updates.length > 0 ? `${updates.length} fiyat kaydedildi.` : "Değişen fiyat yok.",
+      updates.length > 0 ? `${updates.length} ürünün fiyatı kaydedildi.` : "Değişen fiyat yok.",
     )}`,
   );
 }

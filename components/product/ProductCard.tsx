@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Price } from "@/components/product/Price";
+import { DiscountBadge, Price } from "@/components/product/Price";
 import { skipOptimization } from "@/lib/images";
 import type { Product } from "@/types/product";
 
@@ -16,6 +16,7 @@ export function ProductCard({ product, note, priority = false }: ProductCardProp
   return (
     <Link href={`/urun/${product.slug}`} className="group block">
       <div className="relative aspect-[4/5] overflow-hidden bg-surface">
+        <DiscountBadge product={product} />
         <Image
           src={product.cardImage}
           unoptimized={skipOptimization(product.cardImage)}

@@ -265,26 +265,29 @@ export function ProductForm({ product, subcategories }: ProductFormProps) {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="block">
-              <span className={labelText}>Fiyat (₺)</span>
+              <span className={labelText}>Normal fiyat (₺)</span>
               <input
-                name="price"
+                name="normalPrice"
                 inputMode="decimal"
-                defaultValue={priceText(product?.price)}
-                placeholder="2.450"
+                defaultValue={priceText(product?.compareAtPrice ?? product?.price)}
+                placeholder="2.990"
                 className={input}
               />
               <p className={hint}>Boş bırakılırsa sitede fiyat görünmez.</p>
             </label>
             <label className="block">
-              <span className={labelText}>İndirimsiz fiyat (₺, isteğe bağlı)</span>
+              <span className={labelText}>İndirimli fiyat (₺, isteğe bağlı)</span>
               <input
-                name="compareAtPrice"
+                name="salePrice"
                 inputMode="decimal"
-                defaultValue={priceText(product?.compareAtPrice)}
-                placeholder="2.990"
+                defaultValue={product?.compareAtPrice ? priceText(product.price) : ""}
+                placeholder="2.450"
                 className={input}
               />
-              <p className={hint}>Doldurulursa sitede üstü çizili gösterilir.</p>
+              <p className={hint}>
+                Doldurulursa sitede normal fiyat üstü çizili, yanında indirimli fiyat ve indirim
+                yüzdesi görünür. Normal fiyat girilmeden kullanılamaz.
+              </p>
             </label>
           </div>
 
