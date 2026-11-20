@@ -55,6 +55,29 @@ const WOMEN = new Set([
   "vizon-siyah-bagcikli-bot",
   "siyah-kahverengi-suet-bagcikli-ayakkabi",
   "siyah-rugan-deri-zincirli-loafer",
+  // Kasım 2026 partisi
+  "bej-kapitone-kisa-bot",
+  "kahverengi-krem-deri-topuklu-bot",
+  "kahverengi-siyah-suet-cizme",
+  "kahverengi-suet-siyah-deri-cizme",
+  "krem-siyah-kroko-cizme",
+  "lacivert-krem-sneaker",
+  "siyah-bej-bagcikli-sneaker",
+  "siyah-beyaz-platform-sneaker",
+  "siyah-bordo-platform-sneaker",
+  "siyah-deri-cizme",
+  "siyah-haki-cizgili-platform-sneaker",
+  "siyah-hardal-suet-kisa-bot",
+  "siyah-kahverengi-fermuarli-deri-cizme",
+  "siyah-kahverengi-ince-topuklu-bot",
+  "siyah-kahverengi-tokali-deri-cizme",
+  "siyah-kahverengi-topuklu-deri-cizme",
+  "siyah-kapitone-kisa-bot",
+  "siyah-krem-cizgili-platform-sneaker",
+  "siyah-krem-tokali-postal-bot",
+  "siyah-suet-deri-kalin-topuklu-bot",
+  "taba-krem-bilekli-platform-sneaker",
+  "taba-siyah-deri-topuklu-bot",
 ]);
 
 /** İlk sıradaki ana sayfa hero'sunda gösterilir. */
@@ -145,6 +168,7 @@ const COLORS = {
   pudra: "Pudra",
   krem: "Krem",
   hardal: "Hardal",
+  beyaz: "Beyaz",
 };
 const MATERIALS = { deri: "Deri", rugan: "Rugan", suet: "Süet", nubuk: "Nubuk" };
 const WORDS = {
@@ -179,6 +203,13 @@ const WORDS = {
   burunlu: "Burunlu",
   tabanli: "Tabanlı",
   delikli: "Delikli",
+  kapitone: "Kapitone",
+  cizme: "Çizme",
+  kroko: "Kroko",
+  cizgili: "Çizgili",
+  bilekli: "Bilekli",
+  postal: "Postal",
+  ince: "İnce",
 };
 
 function word(token) {
@@ -224,6 +255,7 @@ function parseSlug(slug) {
 
 function subcategory(tokens) {
   const has = (t) => tokens.includes(t);
+  if (has("cizme")) return "Çizme";
   if (has("bot")) return "Bot";
   if (has("sandalet")) return "Sandalet";
   if (has("loafer")) return "Loafer";

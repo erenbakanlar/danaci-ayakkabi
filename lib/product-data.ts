@@ -3072,5 +3072,1173 @@ export const productData: Product[] = [
     "description": "Lacivert delikli deri ayakkabı.",
     "isNew": false,
     "isFeatured": false
+  },
+  {
+    "id": "p-062",
+    "slug": "kahverengi-krem-deri-topuklu-bot",
+    "name": "Deri Topuklu Bot",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Bot",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/kahverengi-krem-deri-topuklu-bot-kart.webp",
+    "images": [
+      "/products/kahverengi-krem-deri-topuklu-bot-detay.webp",
+      "/products/kahverengi-krem-deri-topuklu-bot-magaza.webp"
+    ],
+    "cutout": "/products/kahverengi-krem-deri-topuklu-bot-seffaf.webp",
+    "colors": [
+      "Kahverengi",
+      "Krem"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-062-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-062-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-062-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-062-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-062-40"
+      }
+    ],
+    "description": "Kahverengi ve krem renk seçenekleriyle deri topuklu bot.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-063",
+    "slug": "taba-siyah-deri-topuklu-bot",
+    "name": "Deri Topuklu Bot",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Bot",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/taba-siyah-deri-topuklu-bot-kart.webp",
+    "images": [
+      "/products/taba-siyah-deri-topuklu-bot-detay.webp",
+      "/products/taba-siyah-deri-topuklu-bot-magaza.webp"
+    ],
+    "cutout": "/products/taba-siyah-deri-topuklu-bot-seffaf.webp",
+    "colors": [
+      "Taba",
+      "Siyah"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-063-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-063-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-063-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-063-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-063-40"
+      }
+    ],
+    "description": "Taba ve siyah renk seçenekleriyle deri topuklu bot.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-064",
+    "slug": "siyah-kahverengi-ince-topuklu-bot",
+    "name": "İnce Topuklu Bot",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Bot",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-kahverengi-ince-topuklu-bot-kart.webp",
+    "images": [
+      "/products/siyah-kahverengi-ince-topuklu-bot-detay.webp",
+      "/products/siyah-kahverengi-ince-topuklu-bot-magaza.webp"
+    ],
+    "cutout": "/products/siyah-kahverengi-ince-topuklu-bot-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Kahverengi"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-064-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-064-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-064-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-064-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-064-40"
+      }
+    ],
+    "description": "Siyah ve kahverengi renk seçenekleriyle ince topuklu bot.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-065",
+    "slug": "siyah-suet-deri-kalin-topuklu-bot",
+    "name": "Süet & Deri Kalın Topuklu Bot",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Bot",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-suet-deri-kalin-topuklu-bot-kart.webp",
+    "images": [
+      "/products/siyah-suet-deri-kalin-topuklu-bot-detay.webp",
+      "/products/siyah-suet-deri-kalin-topuklu-bot-magaza.webp"
+    ],
+    "cutout": "/products/siyah-suet-deri-kalin-topuklu-bot-seffaf.webp",
+    "colors": [
+      "Siyah"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-065-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-065-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-065-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-065-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-065-40"
+      }
+    ],
+    "description": "Siyah süet & deri kalın topuklu bot.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-066",
+    "slug": "siyah-krem-tokali-postal-bot",
+    "name": "Tokalı Postal Bot",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Bot",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-krem-tokali-postal-bot-kart.webp",
+    "images": [
+      "/products/siyah-krem-tokali-postal-bot-detay.webp",
+      "/products/siyah-krem-tokali-postal-bot-magaza.webp"
+    ],
+    "cutout": "/products/siyah-krem-tokali-postal-bot-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Krem"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-066-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-066-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-066-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-066-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-066-40"
+      }
+    ],
+    "description": "Siyah ve krem renk seçenekleriyle tokalı postal bot.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-067",
+    "slug": "taba-krem-bilekli-platform-sneaker",
+    "name": "Bilekli Platform Sneaker",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Spor",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/taba-krem-bilekli-platform-sneaker-kart.webp",
+    "images": [
+      "/products/taba-krem-bilekli-platform-sneaker-detay.webp",
+      "/products/taba-krem-bilekli-platform-sneaker-magaza.webp"
+    ],
+    "cutout": "/products/taba-krem-bilekli-platform-sneaker-seffaf.webp",
+    "colors": [
+      "Taba",
+      "Krem"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-067-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-067-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-067-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-067-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-067-40"
+      }
+    ],
+    "description": "Taba ve krem renk seçenekleriyle bilekli platform sneaker.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-068",
+    "slug": "lacivert-krem-sneaker",
+    "name": "Sneaker",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Spor",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/lacivert-krem-sneaker-kart.webp",
+    "images": [
+      "/products/lacivert-krem-sneaker-detay.webp",
+      "/products/lacivert-krem-sneaker-magaza.webp"
+    ],
+    "cutout": "/products/lacivert-krem-sneaker-seffaf.webp",
+    "colors": [
+      "Lacivert",
+      "Krem"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-068-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-068-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-068-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-068-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-068-40"
+      }
+    ],
+    "description": "Lacivert ve krem renk seçenekleriyle sneaker.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-069",
+    "slug": "siyah-bej-bagcikli-sneaker",
+    "name": "Bağcıklı Sneaker",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Spor",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-bej-bagcikli-sneaker-kart.webp",
+    "images": [
+      "/products/siyah-bej-bagcikli-sneaker-detay.webp",
+      "/products/siyah-bej-bagcikli-sneaker-magaza.webp"
+    ],
+    "cutout": "/products/siyah-bej-bagcikli-sneaker-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Bej"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-069-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-069-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-069-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-069-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-069-40"
+      }
+    ],
+    "description": "Siyah ve bej renk seçenekleriyle bağcıklı sneaker.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-070",
+    "slug": "siyah-beyaz-platform-sneaker",
+    "name": "Platform Sneaker",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Spor",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-beyaz-platform-sneaker-kart.webp",
+    "images": [
+      "/products/siyah-beyaz-platform-sneaker-detay.webp",
+      "/products/siyah-beyaz-platform-sneaker-magaza.webp"
+    ],
+    "cutout": "/products/siyah-beyaz-platform-sneaker-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Beyaz"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-070-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-070-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-070-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-070-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-070-40"
+      }
+    ],
+    "description": "Siyah ve beyaz renk seçenekleriyle platform sneaker.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-071",
+    "slug": "siyah-haki-cizgili-platform-sneaker",
+    "name": "Çizgili Platform Sneaker",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Spor",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-haki-cizgili-platform-sneaker-kart.webp",
+    "images": [
+      "/products/siyah-haki-cizgili-platform-sneaker-detay.webp",
+      "/products/siyah-haki-cizgili-platform-sneaker-magaza.webp"
+    ],
+    "cutout": "/products/siyah-haki-cizgili-platform-sneaker-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Haki"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-071-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-071-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-071-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-071-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-071-40"
+      }
+    ],
+    "description": "Siyah ve haki renk seçenekleriyle çizgili platform sneaker.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-072",
+    "slug": "siyah-krem-cizgili-platform-sneaker",
+    "name": "Çizgili Platform Sneaker",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Spor",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-krem-cizgili-platform-sneaker-kart.webp",
+    "images": [
+      "/products/siyah-krem-cizgili-platform-sneaker-detay.webp",
+      "/products/siyah-krem-cizgili-platform-sneaker-magaza.webp"
+    ],
+    "cutout": "/products/siyah-krem-cizgili-platform-sneaker-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Krem"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-072-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-072-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-072-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-072-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-072-40"
+      }
+    ],
+    "description": "Siyah ve krem renk seçenekleriyle çizgili platform sneaker.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-073",
+    "slug": "siyah-hardal-suet-kisa-bot",
+    "name": "Süet Kısa Bot",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Bot",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-hardal-suet-kisa-bot-kart.webp",
+    "images": [
+      "/products/siyah-hardal-suet-kisa-bot-detay.webp",
+      "/products/siyah-hardal-suet-kisa-bot-magaza.webp"
+    ],
+    "cutout": "/products/siyah-hardal-suet-kisa-bot-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Hardal"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-073-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-073-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-073-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-073-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-073-40"
+      }
+    ],
+    "description": "Siyah ve hardal renk seçenekleriyle süet kısa bot.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-074",
+    "slug": "siyah-bordo-platform-sneaker",
+    "name": "Platform Sneaker",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Spor",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-bordo-platform-sneaker-kart.webp",
+    "images": [
+      "/products/siyah-bordo-platform-sneaker-detay.webp",
+      "/products/siyah-bordo-platform-sneaker-magaza.webp"
+    ],
+    "cutout": "/products/siyah-bordo-platform-sneaker-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Bordo"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-074-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-074-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-074-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-074-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-074-40"
+      }
+    ],
+    "description": "Siyah ve bordo renk seçenekleriyle platform sneaker.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-075",
+    "slug": "bej-kapitone-kisa-bot",
+    "name": "Kapitone Kısa Bot",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Bot",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/bej-kapitone-kisa-bot-kart.webp",
+    "images": [
+      "/products/bej-kapitone-kisa-bot-detay.webp",
+      "/products/bej-kapitone-kisa-bot-magaza.webp"
+    ],
+    "cutout": "/products/bej-kapitone-kisa-bot-seffaf.webp",
+    "colors": [
+      "Bej"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-075-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-075-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-075-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-075-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-075-40"
+      }
+    ],
+    "description": "Bej kapitone kısa bot.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-076",
+    "slug": "siyah-kapitone-kisa-bot",
+    "name": "Kapitone Kısa Bot",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Bot",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-kapitone-kisa-bot-kart.webp",
+    "images": [
+      "/products/siyah-kapitone-kisa-bot-detay.webp",
+      "/products/siyah-kapitone-kisa-bot-magaza.webp"
+    ],
+    "cutout": "/products/siyah-kapitone-kisa-bot-seffaf.webp",
+    "colors": [
+      "Siyah"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-076-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-076-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-076-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-076-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-076-40"
+      }
+    ],
+    "description": "Siyah kapitone kısa bot.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-077",
+    "slug": "siyah-spor-ayakkabi",
+    "name": "Spor Ayakkabı",
+    "brand": "Danacı",
+    "category": "erkek",
+    "subcategory": "Spor",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-spor-ayakkabi-kart.webp",
+    "images": [
+      "/products/siyah-spor-ayakkabi-detay.webp",
+      "/products/siyah-spor-ayakkabi-magaza.webp"
+    ],
+    "cutout": "/products/siyah-spor-ayakkabi-seffaf.webp",
+    "colors": [
+      "Siyah"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-077-40"
+      },
+      {
+        "size": "41",
+        "stock": 1,
+        "sku": "DNC-077-41"
+      },
+      {
+        "size": "42",
+        "stock": 1,
+        "sku": "DNC-077-42"
+      },
+      {
+        "size": "43",
+        "stock": 1,
+        "sku": "DNC-077-43"
+      },
+      {
+        "size": "44",
+        "stock": 1,
+        "sku": "DNC-077-44"
+      }
+    ],
+    "description": "Siyah spor ayakkabı.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-078",
+    "slug": "kahverengi-suet-siyah-deri-cizme",
+    "name": "Süet & Deri Çizme",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Çizme",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/kahverengi-suet-siyah-deri-cizme-kart.webp",
+    "images": [
+      "/products/kahverengi-suet-siyah-deri-cizme-detay.webp",
+      "/products/kahverengi-suet-siyah-deri-cizme-magaza.webp"
+    ],
+    "cutout": "/products/kahverengi-suet-siyah-deri-cizme-seffaf.webp",
+    "colors": [
+      "Kahverengi Süet",
+      "Siyah Deri"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-078-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-078-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-078-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-078-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-078-40"
+      }
+    ],
+    "description": "Kahverengi süet ve siyah deri renk seçenekleriyle süet & deri çizme.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-079",
+    "slug": "kahverengi-siyah-suet-cizme",
+    "name": "Süet Çizme",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Çizme",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/kahverengi-siyah-suet-cizme-kart.webp",
+    "images": [
+      "/products/kahverengi-siyah-suet-cizme-detay.webp",
+      "/products/kahverengi-siyah-suet-cizme-magaza.webp"
+    ],
+    "cutout": "/products/kahverengi-siyah-suet-cizme-seffaf.webp",
+    "colors": [
+      "Kahverengi",
+      "Siyah"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-079-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-079-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-079-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-079-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-079-40"
+      }
+    ],
+    "description": "Kahverengi ve siyah renk seçenekleriyle süet çizme.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-080",
+    "slug": "krem-siyah-kroko-cizme",
+    "name": "Kroko Çizme",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Çizme",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/krem-siyah-kroko-cizme-kart.webp",
+    "images": [
+      "/products/krem-siyah-kroko-cizme-detay.webp",
+      "/products/krem-siyah-kroko-cizme-magaza.webp"
+    ],
+    "cutout": "/products/krem-siyah-kroko-cizme-seffaf.webp",
+    "colors": [
+      "Krem",
+      "Siyah"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-080-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-080-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-080-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-080-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-080-40"
+      }
+    ],
+    "description": "Krem ve siyah renk seçenekleriyle kroko çizme.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-081",
+    "slug": "siyah-kahverengi-tokali-deri-cizme",
+    "name": "Tokalı Deri Çizme",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Çizme",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-kahverengi-tokali-deri-cizme-kart.webp",
+    "images": [
+      "/products/siyah-kahverengi-tokali-deri-cizme-detay.webp",
+      "/products/siyah-kahverengi-tokali-deri-cizme-magaza.webp"
+    ],
+    "cutout": "/products/siyah-kahverengi-tokali-deri-cizme-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Kahverengi"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-081-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-081-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-081-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-081-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-081-40"
+      }
+    ],
+    "description": "Siyah ve kahverengi renk seçenekleriyle tokalı deri çizme.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-082",
+    "slug": "siyah-kahverengi-fermuarli-deri-cizme",
+    "name": "Fermuarlı Deri Çizme",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Çizme",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-kahverengi-fermuarli-deri-cizme-kart.webp",
+    "images": [
+      "/products/siyah-kahverengi-fermuarli-deri-cizme-detay.webp",
+      "/products/siyah-kahverengi-fermuarli-deri-cizme-magaza.webp"
+    ],
+    "cutout": "/products/siyah-kahverengi-fermuarli-deri-cizme-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Kahverengi"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-082-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-082-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-082-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-082-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-082-40"
+      }
+    ],
+    "description": "Siyah ve kahverengi renk seçenekleriyle fermuarlı deri çizme.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-083",
+    "slug": "siyah-kahverengi-topuklu-deri-cizme",
+    "name": "Topuklu Deri Çizme",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Çizme",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-kahverengi-topuklu-deri-cizme-kart.webp",
+    "images": [
+      "/products/siyah-kahverengi-topuklu-deri-cizme-detay.webp",
+      "/products/siyah-kahverengi-topuklu-deri-cizme-magaza.webp"
+    ],
+    "cutout": "/products/siyah-kahverengi-topuklu-deri-cizme-seffaf.webp",
+    "colors": [
+      "Siyah",
+      "Kahverengi"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-083-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-083-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-083-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-083-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-083-40"
+      }
+    ],
+    "description": "Siyah ve kahverengi renk seçenekleriyle topuklu deri çizme.",
+    "isNew": false,
+    "isFeatured": false
+  },
+  {
+    "id": "p-084",
+    "slug": "siyah-deri-cizme",
+    "name": "Deri Çizme",
+    "brand": "Danacı",
+    "category": "kadin",
+    "subcategory": "Çizme",
+    "price": 0,
+    "currency": "TRY",
+    "cardImage": "/products/siyah-deri-cizme-kart.webp",
+    "images": [
+      "/products/siyah-deri-cizme-detay.webp",
+      "/products/siyah-deri-cizme-magaza.webp"
+    ],
+    "cutout": "/products/siyah-deri-cizme-seffaf.webp",
+    "colors": [
+      "Siyah"
+    ],
+    "colorways": [],
+    "variants": [
+      {
+        "size": "36",
+        "stock": 1,
+        "sku": "DNC-084-36"
+      },
+      {
+        "size": "37",
+        "stock": 1,
+        "sku": "DNC-084-37"
+      },
+      {
+        "size": "38",
+        "stock": 1,
+        "sku": "DNC-084-38"
+      },
+      {
+        "size": "39",
+        "stock": 1,
+        "sku": "DNC-084-39"
+      },
+      {
+        "size": "40",
+        "stock": 1,
+        "sku": "DNC-084-40"
+      }
+    ],
+    "description": "Siyah deri çizme.",
+    "isNew": false,
+    "isFeatured": false
   }
 ];

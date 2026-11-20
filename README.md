@@ -76,6 +76,10 @@ başlangıç listesini üretir: `public/products` klasöründeki `<ad>-kart.webp
 `<ad>-magaza.webp` ve `<ad>-seffaf.png` dosyalarından. Ham kamera fotoğrafları
 `kaynak-fotograflar/` klasörüne konur (depoya eklenmez).
 
+Listeye sonradan yeni bir fotoğraf partisi eklenirse (`npm run catalog` yeni ürünleri
+sona ekler), sunucu açılışta **yalnızca yeni ürünleri** mevcut veritabanına aktarır;
+panelde düzenlenen ya da silinen eski ürünlere dokunulmaz.
+
 ## Önemli dosyalar
 
 - `lib/site-config.ts`: iletişim bilgileri, menü, kampanya kartı, fiyat ve sepet anahtarları

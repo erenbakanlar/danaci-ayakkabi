@@ -82,9 +82,91 @@ export function db(): DatabaseSync {
   database.exec("PRAGMA journal_mode = WAL; PRAGMA busy_timeout = 5000;");
   database.exec(SCHEMA);
   seedIfEmpty(database);
+  importNewCatalogProducts(database);
 
   instance = database;
   return database;
+}
+
+/** Katalog kimliği "p-062" → 62; panelden eklenenler (p-1a2b3c4d) → null */
+function catalogNumber(id: string): number | null {
+  const match = /^p-(\d{3})$/.exec(id);
+  return match ? Number(match[1]) : null;
+}
+
+/**
+ * Veritabanına aktarılmış en yüksek katalog numarası PRAGMA user_version'da
+ * tutulur. İlk sürüm (p-001…p-061) bu sayaçtan önce aktarıldığı için, sayaç
+ * 0 olan dolu bir veritabanı 61'e kadar aktarılmış sayılır.
+ */
+const FIRST_CATALOG_SIZE = 61;
+
+function catalogVersion(database: DatabaseSync): number {
+  const { user_version } = database.prepare("PRAGMA user_version").get() as {
+    user_version: number;
+  };
+  return user_version;
+}
+
+function setCatalogVersion(database: DatabaseSync, version: number) {
+  database.exec(`PRAGMA user_version = ${Math.floor(version)}`);
+}
+
+const INSERT_PRODUCT = `
+  INSERT INTO products (id, slug, name, brand, category, subcategory, price,
+    compare_at_price, currency, description, colors, sizes, photos, cutout,
+    is_featured, is_new, is_active, sort, created_at, updated_at)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
+`;
+
+function insertCatalogProduct(
+  database: DatabaseSync,
+  product: (typeof productData)[number],
+  sort: number,
+  now: string,
+) {
+  // Eski katalog: kart görseli + galeri. İlk galeri görselinin kartı
+  // hazır kart görselidir; diğerleri kendi kartı olarak kullanılır.
+  const photos: PhotoRow[] = product.images.map((src, i) => ({
+    src,
+    card: i === 0 ? product.cardImage : src,
+  }));
+  database.prepare(INSERT_PRODUCT).run(
+    product.id,
+    product.slug,
+    product.name,
+    product.brand,
+    product.category,
+    product.subcategory,
+    product.price,
+    product.compareAtPrice ?? null,
+    product.currency,
+    product.description,
+    JSON.stringify(product.colors),
+    JSON.stringify(product.variants.map(({ size, stock }) => ({ size, stock }))),
+    JSON.stringify(photos),
+    product.cutout ?? null,
+    product.isFeatured ? 1 : 0,
+    product.isNew ? 1 : 0,
+    sort,
+    now,
+    now,
+  );
+}
+
+function transaction(database: DatabaseSync, work: () => void) {
+  database.exec("BEGIN");
+  try {
+    work();
+    database.exec("COMMIT");
+  } catch (error) {
+    database.exec("ROLLBACK");
+    throw error;
+  }
+}
+
+function highestCatalogNumber(): number {
+  return Math.max(0, ...productData.map((p) => catalogNumber(p.id) ?? 0));
 }
 
 /** İlk açılışta mevcut ürün listesini veritabanına aktarır. */
@@ -94,48 +176,36 @@ function seedIfEmpty(database: DatabaseSync) {
   };
   if (count > 0) return;
 
-  const insert = database.prepare(`
-    INSERT INTO products (id, slug, name, brand, category, subcategory, price,
-      compare_at_price, currency, description, colors, sizes, photos, cutout,
-      is_featured, is_new, is_active, sort, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
-  `);
   const now = new Date().toISOString();
+  transaction(database, () => {
+    productData.forEach((product, index) => insertCatalogProduct(database, product, index, now));
+    setCatalogVersion(database, highestCatalogNumber());
+  });
+}
 
-  database.exec("BEGIN");
-  try {
-    productData.forEach((product, index) => {
-      // Eski katalog: kart görseli + galeri. İlk galeri görselinin kartı
-      // hazır kart görselidir; diğerleri kendi kartı olarak kullanılır.
-      const photos: PhotoRow[] = product.images.map((src, i) => ({
-        src,
-        card: i === 0 ? product.cardImage : src,
-      }));
-      insert.run(
-        product.id,
-        product.slug,
-        product.name,
-        product.brand,
-        product.category,
-        product.subcategory,
-        product.price,
-        product.compareAtPrice ?? null,
-        product.currency,
-        product.description,
-        JSON.stringify(product.colors),
-        JSON.stringify(product.variants.map(({ size, stock }) => ({ size, stock }))),
-        JSON.stringify(photos),
-        product.cutout ?? null,
-        product.isFeatured ? 1 : 0,
-        product.isNew ? 1 : 0,
-        index,
-        now,
-        now,
-      );
-    });
-    database.exec("COMMIT");
-  } catch (error) {
-    database.exec("ROLLBACK");
-    throw error;
+/**
+ * Katalog sonradan büyüdüyse (yeni fotoğraf partisi, npm run catalog), yalnızca
+ * yeni eklenen ürünleri mevcut veritabanına aktarır. Panelden silinen ya da
+ * düzenlenen eski ürünlere dokunmaz.
+ */
+function importNewCatalogProducts(database: DatabaseSync) {
+  const version = catalogVersion(database) || FIRST_CATALOG_SIZE;
+  const fresh = productData.filter((product) => (catalogNumber(product.id) ?? 0) > version);
+  if (fresh.length === 0) {
+    if (catalogVersion(database) === 0) setCatalogVersion(database, version);
+    return;
   }
+
+  const exists = database.prepare("SELECT 1 FROM products WHERE id = ? OR slug = ?");
+  const { maxSort } = database
+    .prepare("SELECT COALESCE(MAX(sort), 0) AS maxSort FROM products")
+    .get() as { maxSort: number };
+  const now = new Date().toISOString();
+  transaction(database, () => {
+    fresh.forEach((product, index) => {
+      if (exists.get(product.id, product.slug)) return;
+      insertCatalogProduct(database, product, maxSort + 1 + index, now);
+    });
+    setCatalogVersion(database, highestCatalogNumber());
+  });
 }
