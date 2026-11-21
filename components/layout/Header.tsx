@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CloseIcon, MenuIcon, SearchIcon, WhatsAppIcon } from "@/components/ui/icons";
@@ -92,21 +91,10 @@ export function Header() {
         {/* Orta: logo */}
         <Link
           href="/"
-          aria-label="Danacı Ayakkabı — ana sayfa"
-          className="block"
+          className="pl-[0.3em] text-xl font-medium tracking-logo lg:text-2xl"
           onClick={() => setMenuOpen(false)}
         >
-          {/* Firma logosu (public/magaza/logo.jpg). Beyaz zemini, mix-blend-multiply
-              ile header rengine karışır. */}
-          <Image
-            src="/magaza/logo.jpg"
-            alt="Danacı Ayakkabı"
-            width={142}
-            height={55}
-            loading="eager"
-            unoptimized
-            className="h-11 w-auto mix-blend-multiply lg:h-[52px]"
-          />
+          {siteConfig.name}
         </Link>
 
         {/* Sağ: bilgi sayfaları + WhatsApp */}
